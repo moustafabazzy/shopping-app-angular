@@ -1,0 +1,24 @@
+.container {
+  width: 75%;
+  margin: 0 auto;
+}
+
+.products-list {
+  padding: 10px;
+  margin-top: 10px;
+  .item-row {
+    display: flex;
+    padding: 10px;
+  }
+  .item-row .item {
+    margin: 5px;
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .item-row .item.title {
+    font-size: 1.5rem;
+    font-weight: bold;
+  }
+}
