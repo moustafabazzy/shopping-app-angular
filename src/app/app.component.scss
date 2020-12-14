@@ -1,0 +1,13 @@
+.nav-bar {
+  display: flex;
+  padding: 10px;
+  background-color: gray;
+  .link {
+    margin: 5px;
+    color: #fff;
+  }
+  .active {
+    color: #fff;
+    font-weight: bold
+  }
+}
