@@ -1,4 +1,6 @@
-export const ProductsList = [
+import { ProductInterface } from './product.interface';
+
+export const ProductsList: ProductInterface[] = [
   {
     id: 1,
     name: 'potatoes',
