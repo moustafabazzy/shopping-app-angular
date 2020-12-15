@@ -1,19 +1,22 @@
 <div class="nav-bar">
-  <div class="container">
-    <a
-      class="link"
-      routerLink="list"
-      routerLinkActive="active"
-    >
-      Home
-    </a>
-    <a
-      class="link"
-      routerLink="cart"
-      routerLinkActive="active"
-    >
-      Cart
-    </a>
+  <div class="nav-bar-links container">
+    <div>
+      <a
+        class="link"
+        routerLink="list"
+        routerLinkActive="active"
+      >
+        Home
+      </a>
+      <a
+        class="link"
+        routerLink="cart"
+        routerLinkActive="active"
+      >
+        Cart
+      </a>
+    </div>
+    <img class="cart-image" src="/assets/cart-icon.png"/>
   </div>
 </div>
 <router-outlet></router-outlet>

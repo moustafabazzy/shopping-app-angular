@@ -1,8 +1,14 @@
 .nav-bar {
   display: flex;
+  align-items: center;
   padding: 20px;
   background-color: gray;
-  .link {
+  .nav-bar-links {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  .nav-bar-links .link {
     margin: 5px;
     color: #fff;
     font-size: 1.35rem;
@@ -10,5 +16,9 @@
   }
   .active {
     font-weight: bold
+  }
+  .cart-image {
+    width: 25px;
+    height: 25px;
   }
 }
