@@ -57,4 +57,8 @@ export class CartComponent implements OnInit, OnDestroy {
 
     return 0;
   }
+
+  isEmptyCart(): boolean {
+    return this.selectedProducts.length === 0;
+  }
 }
