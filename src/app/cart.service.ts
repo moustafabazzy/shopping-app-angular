@@ -1,24 +1,29 @@
 import { Injectable } from '@angular/core';
-import { BehaviorSubject } from 'rxjs';
+import { Observable, BehaviorSubject } from 'rxjs';
 import { ProductsList } from './productsList';
+import { ProductInterface } from './product.interface';
 
 @Injectable({
   providedIn: 'root'
 })
 export class CartService {
-  products = ProductsList;
+  products: ProductInterface[] = ProductsList;
   totalPrice = 0;
   totalPrice$: BehaviorSubject<number> = new BehaviorSubject(0);
-  selectedProducts = [];
-  selectedProducts$: BehaviorSubject<any[]> = new BehaviorSubject([]);
+  selectedProducts: ProductInterface[] = [];
+  selectedProducts$: BehaviorSubject<ProductInterface[]> = new BehaviorSubject([]);
 
   constructor() { }
 
-  getSelectedProducts() {
+  getAllProducts(): ProductInterface[] {
+    return this.products;
+  }
+
+  getSelectedProducts(): Observable<ProductInterface[]> {
     return this.selectedProducts$.asObservable();
   }
 
-  getTotalPrice() {
+  getTotalPrice(): Observable<number> {
     return this.totalPrice$.asObservable();
   }
 
@@ -38,7 +43,7 @@ export class CartService {
     this.updateTotalPrice();
   }
 
-  removeProduct(productId: number): void {
+  removeProductUnit(productId: number): void {
     let removeFromList = false;
     this.selectedProducts.forEach(p => {
       if (p.id === productId && p.unit > 1) {
@@ -47,12 +52,19 @@ export class CartService {
       }
     });
     if (!removeFromList) {
-      this.selectedProducts = this.selectedProducts.filter(p => {
-        if (p.id !== productId) {
-          return p;
-        }
-      });
+      this.removeProduct(productId);
+      return;
     }
+    this.selectedProducts$.next(this.selectedProducts);
+    this.updateTotalPrice();
+  }
+
+  removeProduct(productId: number): void {
+    this.selectedProducts = this.selectedProducts.filter(p => {
+      if (p.id !== productId) {
+        return p;
+      }
+    });
     this.selectedProducts$.next(this.selectedProducts);
     this.updateTotalPrice();
   }

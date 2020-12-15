@@ -23,7 +23,8 @@
         <div class="item">{{ calculatePrice(product) }}</div>
         <div class="item">
           <button (click)="addItem(product.id)">+</button>
-          <button (click)="removeItem(product.id)">-</button>
+          <button (click)="removeItemUnit(product.id)">-</button>
+          <button (click)="removeItem(product.id)">Remove</button>
         </div>
       </div>
     </div>

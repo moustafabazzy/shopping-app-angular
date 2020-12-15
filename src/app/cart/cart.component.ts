@@ -28,7 +28,7 @@ export class CartComponent implements OnInit, OnDestroy {
     const loadSelectedProductsSubscription = this.cartService
       .getSelectedProducts()
       .subscribe(selectedProducts => {
-        this.selectedProducts = selectedProducts
+        this.selectedProducts = selectedProducts;
       });
     this.subscriptions.push(loadSelectedProductsSubscription);
   }
@@ -44,6 +44,10 @@ export class CartComponent implements OnInit, OnDestroy {
 
   addItem(productId: number): void {
     this.cartService.addProduct(productId);
+  }
+
+  removeItemUnit(productId: number): void {
+    this.cartService.removeProductUnit(productId);
   }
 
   removeItem(productId: number): void {
