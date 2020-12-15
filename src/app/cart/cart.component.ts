@@ -10,12 +10,14 @@ import { CartService } from '../cart.service';
 export class CartComponent implements OnInit, OnDestroy {
   selectedProducts$: Observable<any>;
   selectedProducts = [];
+  totalPrice = 0;
   subscriptions: Subscription[] = [];
 
   constructor(private cartService: CartService) { }
 
   ngOnInit(): void {
     this.loadSelectedProducts();
+    this.loadTotalPrice();
   }
 
   ngOnDestroy() {
@@ -31,4 +33,28 @@ export class CartComponent implements OnInit, OnDestroy {
     this.subscriptions.push(loadSelectedProductsSubscription);
   }
 
+  loadTotalPrice(): void {
+    const loadTotalPriceSubscription = this.cartService
+      .getTotalPrice()
+      .subscribe(totalPrice => {
+        this.totalPrice = totalPrice;
+      });
+    this.subscriptions.push(loadTotalPriceSubscription);
+  }
+
+  addItem(productId: number): void {
+    this.cartService.addProduct(productId);
+  }
+
+  removeItem(productId: number): void {
+    this.cartService.removeProduct(productId);
+  }
+
+  calculatePrice(product: any): number {
+    if (product && product.unit && product.price) {
+      return product.unit * product.price;
+    }
+
+    return 0;
+  }
 }

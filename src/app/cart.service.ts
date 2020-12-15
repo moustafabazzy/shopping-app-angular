@@ -8,6 +8,7 @@ import { ProductsList } from './productsList';
 export class CartService {
   products = ProductsList;
   totalPrice = 0;
+  totalPrice$: BehaviorSubject<number> = new BehaviorSubject(0);
   selectedProducts = [];
   selectedProducts$: BehaviorSubject<any[]> = new BehaviorSubject([]);
 
@@ -17,18 +18,41 @@ export class CartService {
     return this.selectedProducts$.asObservable();
   }
 
+  getTotalPrice() {
+    return this.totalPrice$.asObservable();
+  }
+
   addProduct(productId: number): void {
-    const product = this.products.find(p => p.id === productId);
-    this.selectedProducts.push(product);
+    let productSelected = false;
+    this.selectedProducts.forEach(p => {
+      if (p.id === productId) {
+        p.unit += 1;
+        productSelected = true;
+      }
+    });
+    if (!productSelected) {
+      const product = this.products.find(p => p.id === productId);
+      this.selectedProducts.push(product);
+    }
     this.selectedProducts$.next(this.selectedProducts);
+    this.updateTotalPrice();
   }
 
   removeProduct(productId: number): void {
-    this.selectedProducts = this.selectedProducts.map(product => {
-      if (product.id !== productId) {
-        return product;
+    let removeFromList = false;
+    this.selectedProducts.forEach(p => {
+      if (p.id === productId && p.unit > 1) {
+        p.unit -= 1;
+        removeFromList = true;
       }
     });
+    if (!removeFromList) {
+      this.selectedProducts = this.selectedProducts.filter(p => {
+        if (p.id !== productId) {
+          return p;
+        }
+      });
+    }
     this.selectedProducts$.next(this.selectedProducts);
     this.updateTotalPrice();
   }
@@ -36,7 +60,8 @@ export class CartService {
   updateTotalPrice(): void {
     this.totalPrice = 0;
     this.selectedProducts.forEach(product => {
-      this.totalPrice += product.units * product.price;
+      this.totalPrice += product.unit * product.price;
     });
+    this.totalPrice$.next(this.totalPrice);
   }
 }
