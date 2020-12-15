@@ -1,13 +1,14 @@
 .nav-bar {
   display: flex;
-  padding: 10px;
+  padding: 20px;
   background-color: gray;
   .link {
     margin: 5px;
     color: #fff;
+    font-size: 1.35rem;
+    text-decoration: none;
   }
   .active {
-    color: #fff;
     font-weight: bold
   }
 }
