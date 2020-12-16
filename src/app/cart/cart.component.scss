@@ -1,24 +1,5 @@
-.products-list {
-  padding: 10px;
-  margin-top: 10px;
-  .item-row {
-    display: flex;
-    padding: 10px;
-  }
-  .item-row .item {
-    margin: 5px;
-    flex: 1;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-  }
-  .item-row .item.title {
-    font-size: 1.5rem;
-    font-weight: bold;
-  }
-  .item-row .item button {
-    margin: 0.5rem;
-  }
+.list .item-row .item .action {
+  margin: 0.5rem;
 }
 
 .total-price-container {

@@ -8,7 +8,7 @@
       <h2>Total Price</h2>
       <div class="price">AED {{ totalPrice }}</div>
     </div>
-    <div class="products-list">
+    <div class="list">
       <div class="item-row">
         <div class="item title">Name</div>
         <div class="item title">Unit</div>
@@ -23,20 +23,20 @@
         <div class="item">{{ calculatePrice(product) }}</div>
         <div class="item">
           <button
-            class="btn btn-round btn-primary"
+            class="btn btn-round btn-primary action"
             (click)="addItem(product.id)"
           >
             +
           </button>
           <button
-            class="btn btn-round btn-danger"
+            class="btn btn-round btn-danger action"
             (click)="addItem(product.id)"
             (click)="removeItemUnit(product.id)"
           >
             -
           </button>
           <button
-            class="btn btn-danger"
+            class="btn btn-danger action"
             (click)="removeItem(product.id)"
           >
             Remove
