@@ -3,4 +3,4 @@ export interface ProductInterface {
   name: string;
   unit: number;
   price: number;
-};
+}
