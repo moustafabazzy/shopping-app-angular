@@ -16,7 +16,7 @@ export class CartService {
   constructor() { }
 
   getAllProducts(): ProductInterface[] {
-    return this.products;
+    return [...this.products];
   }
 
   getSelectedProducts(): Observable<ProductInterface[]> {
@@ -28,30 +28,30 @@ export class CartService {
   }
 
   addProduct(productId: number): void {
-    let productSelected = false;
+    let addToCart = true;
     this.selectedProducts.forEach(p => {
       if (p.id === productId) {
         p.unit += 1;
-        productSelected = true;
+        addToCart = false;
       }
     });
-    if (!productSelected) {
+    if (addToCart) {
       const product = this.products.find(p => p.id === productId);
-      this.selectedProducts.push(product);
+      this.selectedProducts.push({...product});
     }
     this.selectedProducts$.next(this.selectedProducts);
     this.updateTotalPrice();
   }
 
   removeProductUnit(productId: number): void {
-    let removeFromList = false;
+    let removeFromList = true;
     this.selectedProducts.forEach(p => {
       if (p.id === productId && p.unit > 1) {
         p.unit -= 1;
-        removeFromList = true;
+        removeFromList = false;
       }
     });
-    if (!removeFromList) {
+    if (removeFromList) {
       this.removeProduct(productId);
       return;
     }
