@@ -1,0 +1,32 @@
+@import '../../variables.scss';
+
+.nav-bar {
+  display: flex;
+  align-items: center;
+  padding: 20px;
+  background-color: $dark-color;
+  .brand {
+    font-size: 40px;
+    font-weight: bold;
+    color: #fff;
+  }
+  .nav-bar-links {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  .nav-bar-links .link {
+    margin: 5px;
+    color: #fff;
+    font-size: 1.5rem;
+    text-decoration: none;
+  }
+  .active {
+    font-weight: bold
+  }
+  .cart-image {
+    width: 40px;
+    height: 35px;
+  }
+}
+
