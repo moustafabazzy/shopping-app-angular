@@ -17,16 +17,19 @@
     font-weight: bold;
   }
   .item-row .item button {
-    margin: 0.25rem;
+    margin: 0.5rem;
   }
 }
 
 .total-price-container {
   display: flex;
+  padding: 10px;
   .price {
     display: flex;
     align-items: center;
-    margin: 0.5rem;
+    margin: 10px;
+    margin-left: 20px;
+    font-size: 25px;
   }
 }
 
@@ -37,3 +40,6 @@
   padding: 10px;
 }
 
+.btn-round {
+  font-size: 20px;
+}

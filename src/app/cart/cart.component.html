@@ -1,12 +1,12 @@
 <div class="container">
   <div class="header">
     <h2>Selected Products</h2>
-    <a routerLink="/list">Back</a>
+    <a class="btn btn-primary" routerLink="/list">Back</a>
   </div>
   <div *ngIf="!isEmptyCart()">
     <div class="total-price-container">
-      <h3>Total Price</h3>
-      <div class="price">{{ totalPrice }}</div>
+      <h2>Total Price</h2>
+      <div class="price">AED {{ totalPrice }}</div>
     </div>
     <div class="products-list">
       <div class="item-row">
@@ -22,9 +22,25 @@
         <div class="item">{{ product.price }}</div>
         <div class="item">{{ calculatePrice(product) }}</div>
         <div class="item">
-          <button (click)="addItem(product.id)">+</button>
-          <button (click)="removeItemUnit(product.id)">-</button>
-          <button (click)="removeItem(product.id)">Remove</button>
+          <button
+            class="btn btn-round btn-primary"
+            (click)="addItem(product.id)"
+          >
+            +
+          </button>
+          <button
+            class="btn btn-round btn-danger"
+            (click)="addItem(product.id)"
+            (click)="removeItemUnit(product.id)"
+          >
+            -
+          </button>
+          <button
+            class="btn btn-danger"
+            (click)="removeItem(product.id)"
+          >
+            Remove
+          </button>
         </div>
       </div>
     </div>

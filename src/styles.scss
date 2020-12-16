@@ -1,5 +1,52 @@
 /* You can add global styles to this file, and also import other style files */
+@import './variables.scss';
+
+@font-face {
+  font-family: 'helvetica neue';
+  src: url(assets/fonts/helveticaneue/HelveticaNeueLt.ttf);
+}
+
+body {
+  font-family: 'helvetica neue' !important;
+  font-size: 14px;
+  line-height: 1.42857143;
+  color: #333;
+  background-color: $light-color;
+  margin: 0;
+}
+
 .container {
   width: 75%;
   margin: 0 auto;
+}
+
+.btn {
+  border-radius: 4px;
+  padding: 8px 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #fff;
+  cursor: pointer;
+  font-size: 14px;
+  border: none;
+  text-decoration: none;
+  font-weight: 600;
+}
+
+.btn-round {
+  border-radius: 50%;
+  padding: 5px;
+  width: 28px;
+  height: 28px;
+}
+
+.btn-primary {
+  border-color: $primary-color;
+  background-color: $primary-color;
+}
+
+.btn-danger {
+  border-color: $danger-color;
+  background-color: $danger-color;
 }
