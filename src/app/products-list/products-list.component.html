@@ -1,9 +1,14 @@
 <div class="container">
   <div class="list">
     <div class="item-row">
+      <div class="item cart">
+        <a class="btn btn-lg btn-primary" routerLink="/cart">View Cart</a>
+      </div>
+    </div>
+    <div class="item-row">
       <div class="item title">Name</div>
-      <div class="item title">Unit</div>
-      <div class="item title">Price</div>
+      <div class="item title">Unit (kg)</div>
+      <div class="item title">Price (per kg in AED)</div>
       <div class="item title"></div>
     </div>
     <div class="item-row" *ngFor="let product of products">

@@ -34,6 +34,13 @@ body {
   font-weight: 600;
 }
 
+.btn-lg {
+  width: 200px;
+  height: 30px;
+  font-size: 22px;
+  margin-bottom: 30px;
+}
+
 .btn-round {
   border-radius: 50%;
   padding: 5px;
@@ -67,8 +74,7 @@ body {
     font-size: 20px;
   }
   .item-row .item.title {
-    font-size: 1.5rem;
     font-weight: bold;
-    font-size: 35px;
+    font-size: 28px;
   }
 }

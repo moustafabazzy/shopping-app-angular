@@ -4,7 +4,9 @@
 
 .total-price-container {
   display: flex;
+  align-items: center;
   padding: 10px;
+  padding-top: 0;
   .price {
     display: flex;
     align-items: center;
