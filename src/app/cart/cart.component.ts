@@ -1,5 +1,5 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
-import { Observable, Subscription, BehaviorSubject } from 'rxjs';
+import { Subscription } from 'rxjs';
 import { CartService } from '../cart.service';
 
 @Component({
@@ -8,7 +8,6 @@ import { CartService } from '../cart.service';
   styleUrls: ['./cart.component.scss']
 })
 export class CartComponent implements OnInit, OnDestroy {
-  selectedProducts$: Observable<any>;
   selectedProducts = [];
   totalPrice = 0;
   subscriptions: Subscription[] = [];

@@ -24,9 +24,21 @@
   .active {
     font-weight: bold
   }
-  .cart-image {
+  .cart-container {
+    display: flex;
+    align-items: center;
+  }
+  .cart-container .cart-image {
     width: 40px;
     height: 35px;
+  }
+  .cart-container .price {
+    color: #fff;
+    font-size: 20px;
+    font-weight: bold;
+    display: flex;
+    flex: 1;
+    margin-right: 10px;
   }
 }
 
