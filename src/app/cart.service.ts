@@ -7,27 +7,27 @@ import { ProductInterface } from './product.interface';
   providedIn: 'root'
 })
 export class CartService {
-  products: ProductInterface[] = ProductsList;
-  totalPrice = 0;
-  totalPrice$: BehaviorSubject<number> = new BehaviorSubject(0);
-  selectedProducts: ProductInterface[] = [];
-  selectedProducts$: BehaviorSubject<ProductInterface[]> = new BehaviorSubject([]);
+  private _products: ProductInterface[] = ProductsList;
+  private _totalPrice = 0;
+  private totalPrice$: BehaviorSubject<number> = new BehaviorSubject(0);
+  private selectedProducts: ProductInterface[] = [];
+  private selectedProducts$: BehaviorSubject<ProductInterface[]> = new BehaviorSubject([]);
 
   constructor() { }
 
-  getAllProducts(): ProductInterface[] {
+  public getAllProducts(): ProductInterface[] {
     return [...this.products];
   }
 
-  getSelectedProducts(): Observable<ProductInterface[]> {
+  public getSelectedProducts(): Observable<ProductInterface[]> {
     return this.selectedProducts$.asObservable();
   }
 
-  getTotalPrice(): Observable<number> {
+  public getTotalPrice(): Observable<number> {
     return this.totalPrice$.asObservable();
   }
 
-  addProduct(productId: number): void {
+  public addProduct(productId: number): void {
     let addToCart = true;
     this.selectedProducts.forEach(p => {
       if (p.id === productId) {
@@ -43,7 +43,7 @@ export class CartService {
     this.updateTotalPrice();
   }
 
-  removeProductUnit(productId: number): void {
+  public removeProductUnit(productId: number): void {
     let removeFromList = true;
     this.selectedProducts.forEach(p => {
       if (p.id === productId && p.unit > 1) {
@@ -59,7 +59,7 @@ export class CartService {
     this.updateTotalPrice();
   }
 
-  removeProduct(productId: number): void {
+  public removeProduct(productId: number): void {
     this.selectedProducts = this.selectedProducts.filter(p => {
       if (p.id !== productId) {
         return p;
@@ -69,11 +69,23 @@ export class CartService {
     this.updateTotalPrice();
   }
 
-  updateTotalPrice(): void {
+  private updateTotalPrice(): void {
     this.totalPrice = 0;
     this.selectedProducts.forEach(product => {
       this.totalPrice += product.unit * product.price;
     });
     this.totalPrice$.next(this.totalPrice);
+  }
+
+  public get products(): ProductInterface[] {
+    return this._products;
+  }
+
+  public get totalPrice(): number {
+    return this._totalPrice;
+  }
+
+  public set totalPrice(price: number) {
+    this._totalPrice = price;
   }
 }

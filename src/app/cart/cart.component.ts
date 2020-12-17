@@ -1,6 +1,7 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Subscription } from 'rxjs';
 import { CartService } from '../cart.service';
+import { ProductInterface } from '../product.interface';
 
 @Component({
   selector: 'app-cart',
@@ -8,52 +9,52 @@ import { CartService } from '../cart.service';
   styleUrls: ['./cart.component.scss']
 })
 export class CartComponent implements OnInit, OnDestroy {
-  selectedProducts = [];
-  totalPrice = 0;
-  subscriptions: Subscription[] = [];
+  private _selectedProducts: ProductInterface[] = [];
+  private _totalPrice = 0;
+  private _subscriptions: Subscription[] = [];
 
   constructor(private cartService: CartService) { }
 
-  ngOnInit(): void {
+  public ngOnInit(): void {
     this.loadSelectedProducts();
     this.loadTotalPrice();
   }
 
-  ngOnDestroy() {
-    this.subscriptions.map(subscription => subscription.unsubscribe());
+  public ngOnDestroy() {
+    this._subscriptions.map(subscription => subscription.unsubscribe());
   }
 
-  loadSelectedProducts(): void {
+  private loadSelectedProducts(): void {
     const loadSelectedProductsSubscription = this.cartService
       .getSelectedProducts()
       .subscribe(selectedProducts => {
         this.selectedProducts = selectedProducts;
       });
-    this.subscriptions.push(loadSelectedProductsSubscription);
+    this._subscriptions.push(loadSelectedProductsSubscription);
   }
 
-  loadTotalPrice(): void {
+  private loadTotalPrice(): void {
     const loadTotalPriceSubscription = this.cartService
       .getTotalPrice()
       .subscribe(totalPrice => {
         this.totalPrice = totalPrice;
       });
-    this.subscriptions.push(loadTotalPriceSubscription);
+    this._subscriptions.push(loadTotalPriceSubscription);
   }
 
-  addItem(productId: number): void {
+  public addItem(productId: number): void {
     this.cartService.addProduct(productId);
   }
 
-  removeItemUnit(productId: number): void {
+  public removeItemUnit(productId: number): void {
     this.cartService.removeProductUnit(productId);
   }
 
-  removeItem(productId: number): void {
+  public removeItem(productId: number): void {
     this.cartService.removeProduct(productId);
   }
 
-  calculatePrice(product: any): number {
+  public calculatePrice(product: any): number {
     if (product && product.unit && product.price) {
       return product.unit * product.price;
     }
@@ -61,7 +62,23 @@ export class CartComponent implements OnInit, OnDestroy {
     return 0;
   }
 
-  isEmptyCart(): boolean {
+  public isEmptyCart(): boolean {
     return this.selectedProducts.length === 0;
+  }
+
+  public get totalPrice(): number {
+    return this._totalPrice;
+  }
+
+  public set totalPrice(price: number) {
+    this._totalPrice = price;
+  }
+
+  public get selectedProducts(): ProductInterface[] {
+    return this._selectedProducts;
+  }
+
+  public set selectedProducts(products: ProductInterface[]) {
+    this._selectedProducts = products;
   }
 }

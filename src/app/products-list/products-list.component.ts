@@ -11,20 +11,28 @@ import { CartService } from '../cart.service';
   styleUrls: ['./products-list.component.scss']
 })
 export class ProductsListComponent implements OnInit {
-  products: ProductInterface[] = [];
+  private _products: ProductInterface[] = [];
 
   constructor(private cartService: CartService) { }
 
-  ngOnInit(): void {
+  public ngOnInit(): void {
     this.loadProductsList();
   }
 
-  loadProductsList(): void {
+  private loadProductsList(): void {
     this.products = this.cartService.getAllProducts();
   }
 
-  addToCart(productId: number): void {
+  public addToCart(productId: number): void {
     this.cartService.addProduct(productId);
+  }
+
+  public get products(): ProductInterface[] {
+    return this._products;
+  }
+
+  public set products(products: ProductInterface[]) {
+    this._products = products;
   }
 
 }
