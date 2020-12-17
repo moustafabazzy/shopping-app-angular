@@ -8,7 +8,7 @@ ShoppingApp consists of two screens, shopping list and shopping cart. You can ad
 This app was built using Angular 11.
 
 ## Setup
-- Install angular 22 `npm install -g @angular/cli@11.0.4`
+- Install angular 11 `npm install -g @angular/cli@11.0.4`
 - Clone repository
 - Install dependencies `npm install`
 
