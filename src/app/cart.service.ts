@@ -7,8 +7,8 @@ import { ProductInterface } from './product.interface';
   providedIn: 'root'
 })
 export class CartService {
-  private _products: ProductInterface[] = ProductsList;
-  private _totalPrice = 0;
+  private products: ProductInterface[] = ProductsList;
+  private totalPrice = 0;
   private totalPrice$: BehaviorSubject<number> = new BehaviorSubject(0);
   private selectedProducts: ProductInterface[] = [];
   private selectedProducts$: BehaviorSubject<ProductInterface[]> = new BehaviorSubject([]);
@@ -75,17 +75,5 @@ export class CartService {
       this.totalPrice += product.unit * product.price;
     });
     this.totalPrice$.next(this.totalPrice);
-  }
-
-  public get products(): ProductInterface[] {
-    return this._products;
-  }
-
-  public get totalPrice(): number {
-    return this._totalPrice;
-  }
-
-  public set totalPrice(price: number) {
-    this._totalPrice = price;
   }
 }

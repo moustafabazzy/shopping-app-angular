@@ -9,9 +9,9 @@ import { ProductInterface } from '../product.interface';
   styleUrls: ['./cart.component.scss']
 })
 export class CartComponent implements OnInit, OnDestroy {
-  private _selectedProducts: ProductInterface[] = [];
-  private _totalPrice = 0;
-  private _subscriptions: Subscription[] = [];
+  public selectedProducts: ProductInterface[] = [];
+  public totalPrice = 0;
+  private subscriptions: Subscription[] = [];
 
   constructor(private cartService: CartService) { }
 
@@ -21,7 +21,7 @@ export class CartComponent implements OnInit, OnDestroy {
   }
 
   public ngOnDestroy() {
-    this._subscriptions.map(subscription => subscription.unsubscribe());
+    this.subscriptions.map(subscription => subscription.unsubscribe());
   }
 
   private loadSelectedProducts(): void {
@@ -30,7 +30,7 @@ export class CartComponent implements OnInit, OnDestroy {
       .subscribe(selectedProducts => {
         this.selectedProducts = selectedProducts;
       });
-    this._subscriptions.push(loadSelectedProductsSubscription);
+    this.subscriptions.push(loadSelectedProductsSubscription);
   }
 
   private loadTotalPrice(): void {
@@ -39,7 +39,7 @@ export class CartComponent implements OnInit, OnDestroy {
       .subscribe(totalPrice => {
         this.totalPrice = totalPrice;
       });
-    this._subscriptions.push(loadTotalPriceSubscription);
+    this.subscriptions.push(loadTotalPriceSubscription);
   }
 
   public addItem(productId: number): void {
@@ -64,21 +64,5 @@ export class CartComponent implements OnInit, OnDestroy {
 
   public isEmptyCart(): boolean {
     return this.selectedProducts.length === 0;
-  }
-
-  public get totalPrice(): number {
-    return this._totalPrice;
-  }
-
-  public set totalPrice(price: number) {
-    this._totalPrice = price;
-  }
-
-  public get selectedProducts(): ProductInterface[] {
-    return this._selectedProducts;
-  }
-
-  public set selectedProducts(products: ProductInterface[]) {
-    this._selectedProducts = products;
   }
 }

@@ -10,8 +10,8 @@ import { CartService } from '../cart.service';
   styleUrls: ['./nav-bar.component.scss']
 })
 export class NavBarComponent implements OnInit {
-  private _totalPrice = 0;
-  private _subscriptions: Subscription[] = [];
+  public totalPrice = 0;
+  private subscriptions: Subscription[] = [];
 
   constructor(private cartService: CartService) { }
 
@@ -25,14 +25,6 @@ export class NavBarComponent implements OnInit {
       .subscribe(totalPrice => {
         this.totalPrice = totalPrice;
       });
-    this._subscriptions.push(loadTotalPriceSubscription);
-  }
-
-  public get totalPrice(): number {
-    return this._totalPrice;
-  }
-
-  public set totalPrice(price: number) {
-    this._totalPrice = price;
+    this.subscriptions.push(loadTotalPriceSubscription);
   }
 }

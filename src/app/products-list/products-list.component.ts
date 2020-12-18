@@ -11,7 +11,7 @@ import { CartService } from '../cart.service';
   styleUrls: ['./products-list.component.scss']
 })
 export class ProductsListComponent implements OnInit {
-  private _products: ProductInterface[] = [];
+  public products: ProductInterface[] = [];
 
   constructor(private cartService: CartService) { }
 
@@ -26,13 +26,4 @@ export class ProductsListComponent implements OnInit {
   public addToCart(productId: number): void {
     this.cartService.addProduct(productId);
   }
-
-  public get products(): ProductInterface[] {
-    return this._products;
-  }
-
-  public set products(products: ProductInterface[]) {
-    this._products = products;
-  }
-
 }
